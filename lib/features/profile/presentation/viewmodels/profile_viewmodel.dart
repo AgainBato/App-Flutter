@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
 
 class ProfileViewModel extends ChangeNotifier {
-  bool _isLoggedIn = true; // Mặc định để true để bạn test giao diện Profile hiện tại
-  
+  // Trạng thái mặc định ban đầu là chưa đăng nhập
+  bool _isLoggedIn = false;
+
   bool get isLoggedIn => _isLoggedIn;
 
-  // Logic Đăng xuất
-  void logout() {
-    _isLoggedIn = false;
-    notifyListeners();
+  // Giả lập Đăng nhập
+  void login(String email, String password) {
+    if (email.isNotEmpty && password.isNotEmpty) {
+      _isLoggedIn = true;
+      notifyListeners();
+    }
   }
 
-  // Logic Đăng nhập (Dùng cho các màn login sau này)
-  void login() {
-    _isLoggedIn = true;
+  // Giả lập Đăng ký
+  void signUp(String name, String email, String password) {
+    if (name.isNotEmpty && email.isNotEmpty && password.isNotEmpty) {
+      _isLoggedIn = true;
+      notifyListeners();
+    }
+  }
+
+  // Đăng xuất
+  void logout() {
+    _isLoggedIn = false;
     notifyListeners();
   }
 }
